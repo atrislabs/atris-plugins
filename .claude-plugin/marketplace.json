@@ -1,0 +1,23 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "atris-plugins",
+  "description": "Atris workspace plugins for Claude Code — AI-powered skills for email, calendar, drive, writing, and project management",
+  "owner": {
+    "name": "Atris Labs",
+    "email": "keshavrao250@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "atris-workspace",
+      "description": "AI workspace operating system with 15 skills: Gmail, Google Calendar, Google Drive, Slack, Notion, Google Slides, plus writing, design, backend, and project management tools",
+      "version": "2.3.0",
+      "author": {
+        "name": "Atris Labs",
+        "email": "keshavrao250@gmail.com"
+      },
+      "source": "./plugins/atris-workspace",
+      "category": "productivity",
+      "homepage": "https://github.com/atrislabs/atris"
+    }
+  ]
+}

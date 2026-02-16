@@ -1,0 +1,9 @@
+{
+  "name": "atris-workspace",
+  "description": "AI workspace operating system with 15 skills: Gmail, Google Calendar, Google Drive, Slack, Notion, Google Slides, plus writing, design, backend, and project management tools",
+  "version": "2.3.0",
+  "author": {
+    "name": "Atris Labs",
+    "email": "keshavrao250@gmail.com"
+  }
+}
