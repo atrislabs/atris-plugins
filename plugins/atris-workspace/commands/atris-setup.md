@@ -1,60 +1,63 @@
 ---
-name: atris-setup
-description: Set up Atris authentication for integration skills (email, calendar, drive, slack, notion, slides)
+description: Set up Atris authentication and connect integrations (Gmail, Calendar, Slack, Notion, Drive)
+allowed-tools: Bash, Read
 ---
 
 # Atris Setup
 
-This command helps you connect to AtrisOS so integration skills (email, calendar, drive, etc.) can work.
+Run the following steps to bootstrap Atris for this workspace.
 
-## Steps
-
-1. **Check if already authenticated:**
+## Step 1: Check if Atris CLI is installed
 
 ```bash
-if [ -f ~/.atris/credentials.json ]; then
-  echo "Already authenticated with AtrisOS"
-  cat ~/.atris/credentials.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(f'User: {d.get(\"email\", \"unknown\")}')" 2>/dev/null || echo "Credentials file exists"
-  exit 0
-fi
+command -v atris || npm install -g atris
 ```
 
-2. **If not authenticated, guide the user:**
+If the install fails, tell the user to run `npm install -g atris` manually.
 
-Tell the user:
-- Open https://atris.ai/auth/cli in their browser
-- Sign in with their Google account
-- Copy the CLI code shown on the page
-- Paste it back here
-
-3. **Exchange the code for credentials:**
-
-Once the user provides the code, run:
+## Step 2: Authenticate with AtrisOS
 
 ```bash
-curl -s -X POST https://api.atris.ai/auth/cli/exchange \
-  -H "Content-Type: application/json" \
-  -d "{\"code\": \"USER_CODE_HERE\"}" \
-  -o /tmp/atris_auth.json
-
-mkdir -p ~/.atris
-mv /tmp/atris_auth.json ~/.atris/credentials.json
-echo "Authenticated successfully!"
+atris whoami
 ```
 
-4. **Verify by checking available integrations:**
+If not logged in, run:
 
 ```bash
-TOKEN=$(cat ~/.atris/credentials.json | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
-curl -s https://api.atris.ai/integrations/status \
-  -H "Authorization: Bearer $TOKEN"
+atris login
 ```
 
-Show the user which integrations are connected and which need to be set up at https://atris.ai/integrations.
+This is interactive — the user will need to complete OAuth in their browser and paste the CLI code. Guide them through it.
 
-## Notes
+## Step 3: Check integration status
 
-- No CLI install needed — this works entirely through the API
-- Credentials are stored locally at ~/.atris/credentials.json
-- Integration skills (email, calendar, drive, slack, notion, slides) require authentication
-- Writing/design/backend skills work without authentication
+After login, check which integrations are connected:
+
+```bash
+TOKEN=$(node -e "console.log(require('$HOME/.atris/credentials.json').token)")
+
+echo "=== Gmail ==="
+curl -s "https://api.atris.ai/api/integrations/gmail/status" -H "Authorization: Bearer $TOKEN"
+
+echo "\n=== Google Calendar ==="
+curl -s "https://api.atris.ai/api/integrations/google-calendar/status" -H "Authorization: Bearer $TOKEN"
+
+echo "\n=== Slack ==="
+curl -s "https://api.atris.ai/api/integrations/slack/status" -H "Authorization: Bearer $TOKEN"
+
+echo "\n=== Notion ==="
+curl -s "https://api.atris.ai/api/integrations/notion/status" -H "Authorization: Bearer $TOKEN"
+
+echo "\n=== Google Drive ==="
+curl -s "https://api.atris.ai/api/integrations/google-drive/status" -H "Authorization: Bearer $TOKEN"
+```
+
+## Step 4: Connect missing integrations
+
+For any integration that shows `"connected": false`, guide the user through the OAuth flow:
+
+1. Call the integration's `/start` endpoint to get an auth URL
+2. Have the user open the URL in their browser
+3. After authorizing, confirm the connection by re-checking status
+
+Tell the user which integrations are connected and which still need setup. They can connect more later by running `/atris-setup` again.

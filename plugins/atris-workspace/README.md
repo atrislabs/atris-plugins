@@ -1,38 +1,38 @@
 # Atris Workspace Plugin
 
-AI workspace operating system for Claude Code / Cowork. Adds 15 skills across two tiers:
-
-## Skills That Work Immediately (No Setup)
-
-| Skill | What it does |
-|-------|-------------|
-| **copy-editor** | Detects and fixes AI writing patterns |
-| **writing** | Drafts content with voice and specificity |
-| **design** | Frontend aesthetics policy for UI work |
-| **backend** | Backend architecture policy for API work |
-| **meta** | Metacognition — helps you think about thinking |
-| **memory** | Search and reason over project history |
-| **autopilot** | Autonomous plan-do-review execution loop |
-| **atris** | Core Atris workflow enforcement |
-| **skill-improver** | Improve existing skills |
-
-## Integration Skills (Require Setup)
-
-Run `/atris-setup` to authenticate, then connect integrations at [atris.ai/integrations](https://atris.ai/integrations).
-
-| Skill | What it does |
-|-------|-------------|
-| **email-agent** | Read, send, archive Gmail |
-| **calendar** | View, create, manage Google Calendar events |
-| **drive** | Browse, search, read Google Drive files and Sheets |
-| **slack** | Read and send Slack messages |
-| **notion** | Read, search, create Notion pages and databases |
-| **slides** | Create and edit Google Slides presentations |
+Brings Atris CLI skills into the Cowork desktop app.
 
 ## Setup
 
-1. Install this plugin from the marketplace
-2. Run `/atris-setup` in Claude Code to authenticate
-3. Connect integrations at [atris.ai/integrations](https://atris.ai/integrations)
+1. Install this plugin in Cowork
+2. Run `/atris-setup` to authenticate and connect integrations
+3. Start using skills — they trigger automatically based on your requests
 
-Built by [Atris Labs](https://atris.ai).
+## Included Skills (16)
+
+- **atris**: Atris workflow enforcement for repos using atris/ (MAP, TODO, journal, features, plan-do-review, anti-slop)
+- **autopilot**: PRD-driven autonomous execution - give it a task, it loops until done Triggers on "autopilot", "autonomous", "get it done", "finish this", "ship it"
+- **backend**: Backend architecture policy
+- **calendar**: Google Calendar integration via AtrisOS API
+- **atris**: Codebase intelligence — generates structured navigation maps with file:line references so agents stop re-scanning the same files every session
+- **copy-editor**: Detects AI writing patterns and fixes them
+- **design**: Frontend aesthetics policy
+- **drive**: Google Drive integration via AtrisOS API
+- **email-agent**: Gmail integration via AtrisOS API
+- **memory**: Search and reason over Atris journal history
+- **meta**: Metacognition skill for AI agents
+- **notion**: Notion integration via AtrisOS API
+- **skill-improver**: Audit and improve Claude skills against the Anthropic skill guide
+- **slack**: Slack integration via AtrisOS API
+- **slides**: Google Slides integration via AtrisOS API
+- **writing**: Essay writing skill
+
+## Requirements
+
+- [Atris CLI](https://www.npmjs.com/package/atris) (`npm install -g atris`)
+- AtrisOS account (free at https://atris.ai)
+
+## Learn More
+
+- Docs: https://github.com/atrislabs/atris
+- CLI help: `atris help`
