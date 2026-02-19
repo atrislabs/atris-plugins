@@ -1,20 +1,20 @@
 # Atris Workspace Plugin
 
-Brings Atris CLI skills into the Cowork desktop app.
+Brings Atris skills into Claude Code and Cowork.
 
 ## Setup
 
-1. Install this plugin in Cowork
+1. Install this plugin in Claude Code or Cowork
 2. Run `/atris-setup` to authenticate and connect integrations
 3. Start using skills — they trigger automatically based on your requests
 
 ## Included Skills (16)
 
-- **atris**: Atris workflow enforcement for repos using atris/ (MAP, TODO, journal, features, plan-do-review, anti-slop)
-- **autopilot**: PRD-driven autonomous execution - give it a task, it loops until done Triggers on "autopilot", "autonomous", "get it done", "finish this", "ship it"
+- **atris**: Atris workflow enforcement for repos using atris/ (MAP, TODO, journal, features, plan-do-review)
+- **autopilot**: PRD-driven autonomous execution - give it a task, it loops until done
 - **backend**: Backend architecture policy
 - **calendar**: Google Calendar integration via AtrisOS API
-- **atris**: Codebase intelligence — generates structured navigation maps with file:line references so agents stop re-scanning the same files every session
+- **codebase-intel**: Codebase intelligence — generates structured navigation maps with file:line references
 - **copy-editor**: Detects AI writing patterns and fixes them
 - **design**: Frontend aesthetics policy
 - **drive**: Google Drive integration via AtrisOS API
@@ -34,5 +34,5 @@ Brings Atris CLI skills into the Cowork desktop app.
 
 ## Learn More
 
-- Docs: https://github.com/atrislabs/atris
+- Website: https://atris.ai
 - CLI help: `atris help`
